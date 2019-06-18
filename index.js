@@ -12,6 +12,10 @@ app.listen(3050, function () {
   console.log('Example app listening on port 3050.');
 });
 
+app.get('/', function(req, res){
+  res.redirect('/joke');
+});
+
 var jokeRoute = require("./routes/jokesRoute");
 app.use("/joke", jokeRoute);
 
