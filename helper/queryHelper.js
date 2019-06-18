@@ -1,4 +1,5 @@
-var sql = require('../db/connection.js');
+const path = require("path");
+var sql = require(path.join(__dirname, "..", "db", "connection"));
 
 var processRequest = function(options){
     return new Promise(function (resolve, reject) { 

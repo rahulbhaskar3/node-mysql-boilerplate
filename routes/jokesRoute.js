@@ -1,16 +1,23 @@
 const express = require("express");
-
-const jokeController = require("../controllers/jokesController");
+const path = require("path");
+const validateJokeMiddleware = require(path.join(__dirname, "..", "middlewares", "validateJokeMiddleware"));
+const jokeController = require(path.join(__dirname, "..", "controllers", "jokesController"));
 const jokeRouter = express.Router({ caseSensitive: true });
 
-jokeRouter.get("/jokes", jokeController.getAllJokes);
+jokeRouter.get("/", [], jokeController.getAllJokes);
 
-jokeRouter.get("/jokes/:id", jokeController.getJokeById);
+jokeRouter.get("/jokeOfTheDay", [], jokeController.getJokeOfTheDay);
 
-jokeRouter.post("/add", jokeController.insertJoke);
+jokeRouter.get("/category/:id", [validateJokeMiddleware.chkId], jokeController.getJokesByCategory);
 
-jokeRouter.put("/update/:id", jokeController.insertJoke);
+jokeRouter.get("/search", [validateJokeMiddleware.chkSearch], jokeController.searchJokes);
 
-jokeRouter.delete("/delete/:id", jokeController.insertJoke);
+jokeRouter.get("/:id", [validateJokeMiddleware.chkId], jokeController.getJokeById);
+
+jokeRouter.post("/add", [validateJokeMiddleware.chkJokeDescription, validateJokeMiddleware.chkJokeCategory], jokeController.insertJoke);
+
+jokeRouter.put("/update/:id", [validateJokeMiddleware.chkId, validateJokeMiddleware.chkJokeDescription, validateJokeMiddleware.chkJokeCategory],jokeController.updateJoke);
+
+jokeRouter.delete("/delete/:id", [validateJokeMiddleware.chkId], jokeController.deleteJoke);
 
 module.exports = jokeRouter;

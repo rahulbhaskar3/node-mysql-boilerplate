@@ -1,0 +1,26 @@
+include ../include/header
+include ../include/navigation
+.container 
+    h1= pageTitle    
+    .row
+        table(class="table table-striped table-bordered table-sm", cellspacing="0", width="100%")
+            thead
+                tr
+                    th(scope="col", class="th-sm") #
+                    th(scope="col") Joke
+                    th(scope="col") Category
+            tbody
+                each val in resultSet.length ? resultSet : ['There are no jokes']
+                    tr
+                        td= val.jokeId
+                        td= val.jokeDescription
+                        td= val.categoryDescription   
+    .row
+        .pagination
+            ul.pagination
+                -var index=0;
+                while paging.pageStart <= paging.pages                    
+                    li(class=(paging.currentPage === index+1 ? "active" : ""))
+                        a(href="/joke/?pageSize="+paging.pageSize+"&pageNum="+((paging.pageSize)*(index)), title=""+index+"")= paging.pageStart++
+                    -index++;    
+include ../include/footer

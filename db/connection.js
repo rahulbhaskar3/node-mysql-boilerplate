@@ -6,13 +6,9 @@ var mysql = require('mysql');
 var connectionPool = mysql.createPool({
     connectionLimit : 10,
     host     : 'localhost',
-    user     : 'DBUSERNAME',
-    password : 'DBPWD',
-    database : 'DBNAME'
+    user     : 'root',
+    password : 'CG@1234',
+    database : 'helathEra'
 });
-
-// connectionPool.end(function(err) {
-//     console.log('Connection ended');
-//   });
 
 module.exports = connectionPool;

@@ -1,0 +1,34 @@
+
+
+Example app listening on port 3050.
+  GET /jokes/
+    - Should return a 200 if data fetching is successful
+
+  GET Jokes by jokeId /joke/1
+    √ Should return a 200 if data fetching is successful (65ms)
+    √ Should return a 400 when improper/no jokeID is passed
+
+  GET Search jokes by searchTerm /joke/search
+    √ Should return a 200 if data fetching is successful
+    √ Should return a 400 when improper/no searchTerm is passed
+
+  GET jokes by category /joke/category
+    √ Should return a 200 if data fetching is successful
+    √ Should return a 400 when improper/no categoryID is passed
+
+  POST add jokes /joke/add
+    √ Should return a 200 if data fetching is successful (44ms)
+    √ Should return a 400 when invalid body params are passed
+
+  PUT update jokes /joke/update
+    √ Should return a 200 if data fetching is successful
+    √ Should return a 400 imProper jokeID passed
+
+  DELETE delete joke on the basis of jokeID /joke/delete
+    √ Should return a 200 if data deletion is successful
+    √ Should return a 400 imProper jokeID passed
+
+
+  12 passing (204ms)
+  1 pending
+

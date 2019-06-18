@@ -1,0 +1,12 @@
+include ../include/header
+include ../include/navigation
+.container 
+    h1= pageTitle
+    .row
+    each val in resultSet.length ? resultSet : ['There are no values']
+        blockquote.blockquote.text-right
+            p.mb-0= val.jokeDescription
+            footer.blockquote-footer
+                | Courtsey Of 
+                cite(title='HealthEra') HealthEra
+include ../include/footer
