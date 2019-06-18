@@ -12,13 +12,13 @@ var jokeMiddleware = {
     chkSearch: [
         check("searchTerm").exists().custom((value, { req }) => {
             let keyCheck = true;
-            let regex = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+            // let regex = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
 			if (typeof req.query.searchTerm === "undefined" || req.query.searchTerm == "") {
                 keyCheck = false;
             }
-            if (req.query.searchTerm !== "" && regex.test(req.query.searchTerm) === true) {
-                keyCheck = false;
-            }
+            // if (req.query.searchTerm !== "" && regex.test(req.query.searchTerm) === true) {
+            //     keyCheck = false;
+            // }
 			return keyCheck;
 		}).withMessage("Please enter a valid search term"),
 		(req, res, next) => {
